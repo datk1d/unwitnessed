@@ -1,0 +1,36 @@
+body {
+  font-family: Verdana;
+  background-image: url("../assets/landingpage.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: overlay;
+  background-color: black;
+}
+#lander {
+  min-height: 100vh;
+}
+#imageDiv {
+  background-image: url("../assets/malazanHelm.png");
+  width: 776px;
+  height: 218px;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+}
+#playBtn {
+  position: absolute;
+  top: 45%;
+}
+h1 {
+  color: white;
+  position: absolute;
+  display: flex;
+  font-size: 80px;
+  left: 5%;
+  top: 10%;
+}
+/* Landing Page Image
+    http://2.bp.blogspot.com/-3sGyDScQ6XE/USjGZqIAonI/AAAAAAAAE-I/yuOFsrFPk5I/s1600/Heroes_by_Joe_Abercrombie_Wraparound.jpg
+*/
