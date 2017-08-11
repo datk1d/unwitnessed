@@ -1,4 +1,4 @@
-body {
+#land {
   font-family: Verdana;
   background-image: url("../assets/landingpage.jpg");
   background-repeat: no-repeat;
@@ -17,11 +17,32 @@ body {
   display: flex;
   position: absolute;
   top: 50%;
-  left: 20%;
+  left: 24%;
+}
+#form {
+  position: absolute;
+  top: 40%;
+  left: 49.3%;
+  color: white;
+  display: flex;
+  font-weight: 500;
+  font-size: 30px;
+  padding-top: 1px;
+  padding-bottom: 3.5px;
+}
+.zero {
+  background-image:url('../assets/rake.jpg');
+}
+#name {
+  margin: 2%;
 }
 #playBtn {
-  position: absolute;
-  top: 45%;
+
+}
+#playBtn:hover {
+  color: #B1071C;
+  border-radius: 5px;
+  border: #071715 solid 2px;
 }
 h1 {
   color: white;
@@ -31,6 +52,83 @@ h1 {
   left: 5%;
   top: 10%;
 }
+#mainWrapper {
+  width: 100%;
+  height: 100%;
+}
+#headerDiv {
+  position: absolute;
+  background-color: #1D1075;
+  width: 100%;
+  height: 10%;
+  display: flex;
+}
+.counter {
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+#botCounter {
+  border: #1B15E5 solid 3px;
+  top: 50%;
+  background-color: #57A7E5;
+}
+#playerCounter {
+  border: #AC1D1C solid 3px;
+  top: 50%;
+  background-color: #BA5E57;
+}
+#footyDiv {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  top: 90%;
+}
+#boardDiv {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  background-color: lightgrey;
+}
+.row {
+  width: 40%;
+  height: 30%;
+  display: flex;
+  position: absolute;
+}
+.option {
+  width: 30%;
+  height: 100%;
+  margin: 2%;
+  border: black solid 2px;
+  background-color: white;
+  border-radius: 5%;
+}
+#botDiv {
+  bottom: 65%;
+  left: 25%;
+}
+#playerDiv {
+  top: 65%;
+  right: 25%;
+}
+
+/* Brood option image
+  http://vignette4.wikia.nocookie.net/malazan/images/6/61/Hammer_Time_by_Shadaan.jpg/revision/latest?cb=20150803043711
+ */
 /* Landing Page Image
-    http://2.bp.blogspot.com/-3sGyDScQ6XE/USjGZqIAonI/AAAAAAAAE-I/yuOFsrFPk5I/s1600/Heroes_by_Joe_Abercrombie_Wraparound.jpg
+  http://2.bp.blogspot.com/-3sGyDScQ6XE/USjGZqIAonI/AAAAAAAAE-I/yuOFsrFPk5I/s1600/Heroes_by_Joe_Abercrombie_Wraparound.jpg
+*/
+/* Malazan Helm Image
+  https://vignette3.wikia.nocookie.net/malazan/images/d/d4/Helm_header_small.png/revision/latest?cb=20101222002529
 */
