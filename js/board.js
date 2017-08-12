@@ -3,33 +3,33 @@ console.log('board.js has been chained');
 const options = [
   {
     code: 'r',
-    img: '../assets/rake.jpg',
-    bg: '../assets/siegeOfPale.jpg',
+    img: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/rake.jpg")',
+    bg: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/siegeOfPale.jpg")',
   },
   {
     code: 'b',
-    img: '../assets/brood.jpg',
-    bg: '../assets/broodWall.jpg',
+    img: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/brood.jpg")',
+    bg: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/broodWall.jpg")',
   },
   {
     code: 't',
-    img: '../assets/trull.jpg',
-    bg: '../assets/trullWall.jpg',
+    img: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/trull.jpg")',
+    bg: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/trullWall.jpg")',
   },
 ];
 const board = {
   player: {
     name: '',
-    gameOptions: options,
+    gameOptions: [],
   },
   ai: {
     name: 'Bot',
-    gameOptions: options,
+    gameOptions: [],
   },
   inPlay: [],
-  fight: function () {
+  checkRound: function () {
     if (this.inPlay[0].code === this.inPlay[1].code) {
-
+      $
     }
     else {
       for (let i = 0; i < this.inPlay.length; i++) {
@@ -37,17 +37,16 @@ const board = {
     }
       switch (code) {
         case 'bt':
-        case 'tb':
-          console.log('brood wins');
-        break;
         case 'rb':
-        case 'br':
-          console.log('rake wins');
-        break;
         case 'tr':
-        case 'rt':
-          console.log('trull wins');
+          console.log('player wins');
         break;
+        case 'tb':
+        case 'br':
+        case 'rt':
+          console.log('Bot Wins');
+        break;
+
       }
     }
   }

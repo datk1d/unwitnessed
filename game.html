@@ -26,7 +26,7 @@
       <main>
         <div id="boardDiv">
           <div id="playGround">
-            <div id="playerTarget" class="faceOff"></div>
+            <div id="playerTarget" class="faceOff" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             <div id="botTarget" class="faceOff"></div>
           </div>
           <div id ="botDiv" class="row">
@@ -35,9 +35,9 @@
             <div id="b0" class="option zero"></div>
           </div>
           <div id="playerDiv" class="row">
-            <div id="p0" class="option zero" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)"></div>
-            <div id="p1" class="option one" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)"></div>
-            <div id="p2" class="option two" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)"></div>
+            <div id="p0" class="option zero" draggable="true" ondragstart="drag(event)"></div>
+            <div id="p1" class="option one" draggable="true" ondragstart="drag(event)"></div>
+            <div id="p2" class="option two" draggable="true" ondragstart="drag(event)"></div>
           </div>
         </div>
       </main>
