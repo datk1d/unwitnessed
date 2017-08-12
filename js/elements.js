@@ -13,6 +13,7 @@ const $els = {
   botCounter: $('#botCounter'),
   playerCounter: $('#playerCounter'),
   board: $('#boardDiv'),
+  dropArea: $('#playerTarget'),
   playerCards: $('#playerDiv'),
   botZeroCard: $('#b0'),
   botOneCard: $('#b1'),

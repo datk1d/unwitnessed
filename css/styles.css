@@ -12,6 +12,7 @@
 }
 #imageDiv {
   background-image: url("../assets/malazanHelm.png");
+
   width: 776px;
   height: 218px;
   display: flex;
@@ -30,14 +31,11 @@
   padding-top: 1px;
   padding-bottom: 3.5px;
 }
-.zero {
-  background-image:url('../assets/rake.jpg');
-}
 #name {
   margin: 2%;
 }
-#playBtn {
-
+a {
+  text-decoration: none;
 }
 #playBtn:hover {
   color: #B1071C;
@@ -94,8 +92,6 @@ h1 {
   height: 80%;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   top: 10%;
   background-color: lightgrey;
@@ -114,13 +110,96 @@ h1 {
   background-color: white;
   border-radius: 5%;
 }
+#playerTarget {
+  width: 30%;
+  height: 50%;
+  margin: ;
+  border: black solid 2px;
+  background-color: white;
+  border-radius: 5%
+  width: ;
+  height: %;
+  display: ex;
+}
+#botTarget {
+  width: 21.5%;
+  height: 60%;
+  border: black solid 2px;
+  background-color: white;
+  border-radius: 5%;
+  display: flex;
+  position: absolute;
+  left: 73%;
+  top: 34%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: darken;
+}
+#playerTarget {
+  width: 20%;
+  height: 60%;
+  border: black solid 2px;
+  background-color: white;
+  border-radius: 3%;
+  display: flex;
+  position: absolute;
+  top: 6%;
+  left: 5.5%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: darken;
+}
+#playGround {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  top: 0%;
+  border: 2px solid black;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: darken;
+}
+.zero {
+  background-image: url('../assets/rake.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+}
+.one {
+  background-image: url('../assets/brood.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+}
+.two {
+  background-image: url('../assets/trull.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+}
+#p0:hover {
+background-blend-mode: darken;
+}
+#p1:hover {
+background-blend-mode: darken;
+}
+#p2:hover {
+background-blend-mode: darken;
+}
 #botDiv {
-  bottom: 65%;
-  left: 25%;
+  bottom: 82%;
+  left: 50%;
 }
 #playerDiv {
-  top: 65%;
-  right: 25%;
+  top: 78%;
+  right: 50%;
 }
 
 /* Brood option image

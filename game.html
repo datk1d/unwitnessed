@@ -25,19 +25,19 @@
       </footer>
       <main>
         <div id="boardDiv">
+          <div id="playGround">
+            <div id="playerTarget" class="faceOff"></div>
+            <div id="botTarget" class="faceOff"></div>
+          </div>
           <div id ="botDiv" class="row">
             <div id="b2" class="option two"></div>
             <div id="b1" class="option one"></div>
             <div id="b0" class="option zero"></div>
           </div>
-          <div id="playGround">
-            <div id="playerTarget" class="option"></div>
-            <div id="botTarget" class="option"></div>
-          </div>
           <div id="playerDiv" class="row">
-            <div id="p0" class="option zero" draggable="true"></div>
-            <div id="p1" class="option one"></div>
-            <div id="p2" class="option two"></div>
+            <div id="p0" class="option zero" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)"></div>
+            <div id="p1" class="option one" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)"></div>
+            <div id="p2" class="option two" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)"></div>
           </div>
         </div>
       </main>
