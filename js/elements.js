@@ -23,4 +23,6 @@ const $els = {
   plZeroCard: $('#p0'),
   plOneCard: $('#p1'),
   plTwoCard: $('#p2'),
+  status: $('#statusDisplay'),
+  nameDisplay: $('#nameDisplay'),
 }

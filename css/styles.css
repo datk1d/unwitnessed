@@ -12,7 +12,6 @@
 }
 #imageDiv {
   background-image: url("../assets/malazanHelm.png");
-
   width: 776px;
   height: 218px;
   display: flex;
@@ -36,6 +35,11 @@
 }
 a {
   text-decoration: none;
+  color: #C0071E;
+}
+#playBtn {
+  padding-left: 3%;
+  padding-bottom: 2%;
 }
 #playBtn:hover {
   color: #B1071C;
@@ -69,15 +73,18 @@ h1 {
   justify-content: center;
   align-items: center;
   position: absolute;
+  font-weight: bold;
 }
 #botCounter {
   border: #1B15E5 solid 3px;
-  top: 50%;
+  top: 22%;
+  left: 3%;
   background-color: #57A7E5;
 }
 #playerCounter {
   border: #AC1D1C solid 3px;
-  top: 50%;
+  top: 22%;
+  left: 3%;
   background-color: #BA5E57;
 }
 #footyDiv {
@@ -103,29 +110,22 @@ h1 {
   position: absolute;
 }
 .option {
-  width: 30%;
+  width: 24%;
   height: 100%;
   margin: 2%;
-  border: black solid 2px;
-  background-color: white;
+  border: black solid 4px;
   border-radius: 5%;
 }
 #playerTarget {
   width: 30%;
   height: 50%;
-  margin: ;
   border: black solid 2px;
-  background-color: white;
   border-radius: 5%
-  width: ;
-  height: %;
-  display: ex;
 }
 #botTarget {
   width: 21.5%;
   height: 60%;
   border: black solid 2px;
-  background-color: white;
   border-radius: 5%;
   display: flex;
   position: absolute;
@@ -140,7 +140,6 @@ h1 {
   width: 20%;
   height: 60%;
   border: black solid 2px;
-  background-color: white;
   border-radius: 3%;
   display: flex;
   position: absolute;
@@ -170,6 +169,8 @@ h1 {
   background-position: center center;
   background-size: cover;
   background-blend-mode: luminosity;
+  background-color: white;
+  border-color: #1C1E57;
 }
 .one {
   background-image: url('../assets/brood.jpg');
@@ -177,6 +178,8 @@ h1 {
   background-position: center center;
   background-size: cover;
   background-blend-mode: luminosity;
+  background-color: white;
+  border-color: #57A515;
 }
 .two {
   background-image: url('../assets/trull.jpg');
@@ -184,6 +187,8 @@ h1 {
   background-position: center center;
   background-size: cover;
   background-blend-mode: luminosity;
+  background-color: white;
+  border-color: #B2BEB5;
 }
 #p0:hover {
 background-blend-mode: darken;
@@ -202,7 +207,33 @@ background-blend-mode: darken;
   top: 78%;
   right: 50%;
 }
-
+#statusDisplay {
+  height: 45%;
+  width: 275px;
+  border-radius: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border: 2px solid white;
+  left: 74.5%;
+  top: 50%;
+  color: #0AF;
+  font-weight: 500;
+}
+#nameDisplay {
+  height: 45%;
+  width: 175px;
+  border-radius: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border: 2px solid lightgrey;
+  left: 78%;
+  color: #B00B00;
+  font-weight: 300;
+}
 /* Brood option image
   http://vignette4.wikia.nocookie.net/malazan/images/6/61/Hammer_Time_by_Shadaan.jpg/revision/latest?cb=20150803043711
  */
@@ -211,4 +242,19 @@ background-blend-mode: darken;
 */
 /* Malazan Helm Image
   https://vignette3.wikia.nocookie.net/malazan/images/d/d4/Helm_header_small.png/revision/latest?cb=20101222002529
+*/
+/* Rake's Image
+      https://vignette1.wikia.nocookie.net/malazan/images/b/b9/Anomander_by_slaine69-d75ve0w.jpg/revision/latest?cb=20150929095648
+*/
+/* Trull's image
+  https://s-media-cache-ak0.pinimg.com/originals/85/e2/1c/85e21cac53ac64477090785bebbc467d.jpg
+*/
+/* Trull's Background image
+  https://s-media-cache-ak0.pinimg.com/originals/7a/6a/36/7a6a366ca1f98f7f1672693ff304c294.jpg
+*/
+/* Caladan Brood wallpaper
+  https://www.walldevil.com/wallpapers/a80/wallpaper-caladan-castle-twitter-art-digital.jpg
+*/
+/* Seige of Pale Image
+      https://vignette2.wikia.nocookie.net/malazan/images/c/c0/Siege_Of_Pale.jpg/revision/latest?cb=20131013110158
 */

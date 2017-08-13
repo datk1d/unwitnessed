@@ -4,8 +4,14 @@ class Game {
   constructor() {
   }
   getOptions() {
-    board.player.gameOptions = playerOptions;
-    board.ai.gameOptions = aiOptions;
+    board.player.gameOptions = options.map((array) => {return array});
+    board.ai.gameOptions = options.map((array) => {return array});
+
+/* solution for passing variables from page to page found on stack overflow */
+    let name = localStorage.getItem('name');
+    board.player.name = name
+//
+    $els.nameDisplay.html(board.player.name);
   }
   playerDrop() {
     for (let i = 0; i < board.player.gameOptions.length; i++) {
@@ -14,7 +20,7 @@ class Game {
         removeIndex(board.player.gameOptions, i, 1)
       }
     }
-    this.aiPlays();
+    setTimeout(() => {this.aiPlays(); }, 1000);
   }
   aiPlays() {
     let rand = rngZeroUp(board.ai.gameOptions.length);
@@ -22,12 +28,10 @@ class Game {
     board.inPlay.push(play);
     removeIndex(board.ai.gameOptions, rand, 1);
     $els.botTarget.css('background-image', board.inPlay[1].img);
+
     board.checkRound();
 
-    setTimeout(function() {
-      nuGame.cleanArea();
-    }, 3500);
-
+    setTimeout(() => {this.cleanArea(); }, 3250);
   }
   cleanArea() {
     board.inPlay.pop();
@@ -36,7 +40,11 @@ class Game {
     $els.botTarget.css('background-image', 'none');
     $els.dropArea.css('background-image', 'none');
   }
+  endAllDrag() {
+    $els.plZeroCard.attr('draggable', 'false');
+    $els.plOneCard.attr('draggable', 'false');
+    $els.plTwoCard.attr('draggable', 'false');
+  }
 }
-
 const nuGame = new Game();
 nuGame.getOptions();
