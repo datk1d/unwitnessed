@@ -63,10 +63,14 @@ After that I worked on the JS file I titled movement. I called it that because i
 
 It was relatively smooth sailing after that... Relatively.
 
-## Complications & Future Enhancements
+## Complications
 
 There were many complications. I ran into every error and issue known to JavaScript. Lexical scoping issues, process issues, logical issues. And SYNTAX ERRORS. Syntax errors are my personal plague.
 
 One interesting issue I ran into was how to transfer the name variable and value over to the second webpage where the actual game is housed. The solution was pretty simple and it was resolved within the hour.
+
+## Future Enhancements
+
+My original idea was to make a card game using characters from the Malazan world. I still want to do this and seek to make it a future project. However, for this particular game, I feel it still needs more animation, an instruction section, and an options button to replay the game and quit to the landing page.
 
 ###### Dominick Serrant

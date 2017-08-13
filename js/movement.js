@@ -44,5 +44,18 @@ function drop(event) {
 
   nuGame.playerDrop();
 }
-
+function playerFadeOut(fade) {
+  fade.css('animation', 'playerFadeOut 2.5s ease-out 1s 1');
+}
+function removeFadeOut(fade) {
+  fade.css('animation', 'adeout 2.5s ease-out 1s 1');
+}
+function twoFadeOut(fadeA, fadeB) {
+  fadeA.css('animation', 'twoFadeOut 2.5s ease-out 1s 1');
+  fadeB.css('animation', 'twoFadeOut 2.5s ease-out 1s 1');
+}
+function remTwoFade(fadeA, fadeB) {
+  fadeA.css('animation', 'wofadeout 2.5s ease-out 1s 1');
+  fadeB.css('animation', 'wofadeout 2.5s ease-out 1s 1')
+}
 

@@ -31,7 +31,7 @@ class Game {
 
     board.checkRound();
 
-    setTimeout(() => {this.cleanArea(); }, 3250);
+    setTimeout(() => {this.cleanArea(); }, 3500);
   }
   cleanArea() {
     board.inPlay.pop();

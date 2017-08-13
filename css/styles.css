@@ -135,6 +135,7 @@ h1 {
   background-position: center center;
   background-size: cover;
   background-blend-mode: darken;
+  animation: ;
 }
 #playerTarget {
   width: 20%;
@@ -149,6 +150,7 @@ h1 {
   background-position: center center;
   background-size: cover;
   background-blend-mode: darken;
+  animation: ;
 }
 #playGround {
   width: 100%;
@@ -233,6 +235,16 @@ background-blend-mode: darken;
   left: 78%;
   color: #B00B00;
   font-weight: 300;
+}
+@keyframes playerFadeOut {
+
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+@keyframes twoFadeOut {
+
+  from{opacity: 1;}
+  to{opacity: 0;}
 }
 /* Brood option image
   http://vignette4.wikia.nocookie.net/malazan/images/6/61/Hammer_Time_by_Shadaan.jpg/revision/latest?cb=20150803043711

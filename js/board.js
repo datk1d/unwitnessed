@@ -35,16 +35,28 @@ const board = {
   pulledBGI: '',
   gameCheck: function () {
     if (this.inPlay[0].code === this.inPlay[1].code && this.player.roundCount === 1 && this.ai.roundCount === 1) {
+
+      twoFadeOut($els.dropArea, $els.botTarget);
+      setTimeout(() => {remTwoFade($els.dropArea, $els.botTarget);}, 3510);
+
       $els.status.html('The game has ended in a tie!');
 
       nuGame.endAllDrag();
     }
     else if (this.player.roundCount === 2) {
+
+      playerFadeOut($els.botTarget);
+      setTimeout(() => {removeFadeOut($els.botTarget); }, 3510);
+
       $els.status.html(`${board.player.name} has won this game!`);
 
       nuGame.endAllDrag();
     }
     else if (this.ai.roundCount === 2) {
+
+      playerFadeOut($els.dropArea);
+      setTimeout(() => {removeFadeOut($els.dropArea); }, 3510);
+
       $els.status.html(`The Bot has won this game!`);
 
       nuGame.endAllDrag();
@@ -64,7 +76,11 @@ const board = {
           board.ai.gameOptions.splice(options.indexOf(options[i]), 0, board.inPlay[0]);
         }
       }
-      $els.status.html(`This round is a tie. Redo!`)
+      twoFadeOut($els.dropArea, $els.botTarget);
+      setTimeout(() => {remTwoFade($els.dropArea, $els.botTarget);}, 3510);
+
+      $els.status.html(`This round is a tie. Redo!`);
+
       console.log('tie');
       board.gameCheck();
     }
@@ -81,6 +97,10 @@ const board = {
           $els.playGround.css('background-image', board.inPlay[0].bg);
           board.player.roundCount += 1;
           $els.playerCounter.html(board.player.roundCount);
+
+          playerFadeOut($els.botTarget);
+          setTimeout(() => {removeFadeOut($els.botTarget); }, 3510);
+
           $els.status.html(`${board.player.name} won this round!`)
 
           board.gameCheck();
@@ -93,6 +113,10 @@ const board = {
           $els.playGround.css('background-image', board.inPlay[1].bg);
           board.ai.roundCount += 1;
           $els.botCounter.html(board.ai.roundCount);
+
+          playerFadeOut($els.dropArea);
+          setTimeout(() => {removeFadeOut($els.dropArea); },3510);
+
           $els.status.html(`The Bot has won this round!`)
 
           board.gameCheck();
