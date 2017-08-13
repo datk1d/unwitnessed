@@ -68,9 +68,12 @@ const board = {
       console.log('tie');
       board.gameCheck();
     }
+/* Round winning logic */
     else {
+/* concatenates the codes of the two option objects into one string
+*/
       let code = board.inPlay[0].code + board.inPlay[1].code;
-
+/* Checks the six different ways to win the round using the fall through method. if the winner is in the 0 index it is the player's win. */
       switch (code) {
         case 'bt':
         case 'rb':
@@ -82,6 +85,7 @@ const board = {
 
           board.gameCheck();
           console.log('Player wins')
+/* if the winner is in the 1 index the winner is the AI. */
         break;
         case 'tb':
         case 'br':
