@@ -28,26 +28,21 @@ $els.playBtn.attr('type', 'submit');
 function allowDrop(event) {
   event.preventDefault();
 }
-
 function drag(event) {
   event.dataTransfer.setData('text', event.target.id);
 }
-
 function drop(event) {
   event.preventDefault();
 
   const pulledId = '#' + event.dataTransfer.getData('text');
-  let $pulledBGI = $(pulledId).css('background-image');
+  board.pulledBGI = $(pulledId).css('background-image');
 
   const dropTargetId = '#' + event.target.id;
-  $(dropTargetId).css('background-image', $pulledBGI);
+  $(dropTargetId).css('background-image', board.pulledBGI);
 
   $(pulledId).attr('draggable', 'false');
-    console.log(event.target);
-    console.log(dropTargetId);
-    console.log(pulledId);
-    console.log($pulledBGI);
 
+  nuGame.playerDrop();
 }
 
 

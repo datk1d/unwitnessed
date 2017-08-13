@@ -1,8 +1,14 @@
 console.log('helper.js has been chained');
 
+/* returns an array that has had an item spliced out of it. ray is the array that you want something taken out. ind is the index to be spliced. amt is how many you want to remove from that index */
+function removeIndex(ray, ind, amt) {
+  ray.splice(ind, amt);
+
+  return ray;
+}
 /* RNG  n = the range you want from the RNG. ie- If you want a random number between 0-60, n would be 60*/
 function rngZeroUp(n) {
-  let num = Math.floor(Math.random() * n)
+  let num = Math.floor((Math.random() * n) + 0)
 
   return num;
 }

@@ -162,6 +162,7 @@ h1 {
   background-position: center center;
   background-size: cover;
   background-blend-mode: darken;
+  background-image: ;
 }
 .zero {
   background-image: url('../assets/rake.jpg');
