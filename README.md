@@ -51,7 +51,8 @@ The one with 2/3 round wins wins the game!
           console.log('Bot Wins');
         break;
       }
-    } ```
+    } 
+```
 
 ## Build Strategy
 
