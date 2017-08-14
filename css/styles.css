@@ -74,6 +74,7 @@ h1 {
   align-items: center;
   position: absolute;
   font-weight: bold;
+  font-size: 22px;
 }
 #botCounter {
   border: #1B15E5 solid 3px;
@@ -222,6 +223,7 @@ background-blend-mode: darken;
   top: 50%;
   color: #0AF;
   font-weight: 500;
+  font-size: 20px;
 }
 #nameDisplay {
   height: 45%;
@@ -234,7 +236,8 @@ background-blend-mode: darken;
   border: 2px solid lightgrey;
   left: 78%;
   color: #B00B00;
-  font-weight: 300;
+  font-weight: 400;
+  font-size: 20px;
 }
 @keyframes playerFadeOut {
 
