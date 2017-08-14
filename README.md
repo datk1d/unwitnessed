@@ -19,7 +19,7 @@ The one with 2/3 round wins wins the game!
 - JavaScript
 - jQuery
 
-```/* Round winning logic */
+``` /* Round winning logic */
     else {
 /* concatenates the codes of the two option objects into one string 
 
@@ -51,7 +51,7 @@ The one with 2/3 round wins wins the game!
           console.log('Bot Wins');
         break;
       }
-    }```
+    } ```
 
 ## Build Strategy
 
