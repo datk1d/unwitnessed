@@ -26,9 +26,9 @@ class Game {
     let rand = rngZeroUp(board.ai.gameOptions.length);
     let play = board.ai.gameOptions[rand];
     board.inPlay.push(play);
-    removeIndex(board.ai.gameOptions, rand, 1);
     $els.botTarget.css('background-image', board.inPlay[1].img);
 
+    removeIndex(board.ai.gameOptions, rand, 1);
     board.checkRound();
 
     setTimeout(() => {this.cleanArea(); }, 3500);
