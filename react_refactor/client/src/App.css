@@ -117,12 +117,6 @@ h1 {
   border: black solid 4px;
   border-radius: 5%;
 }
-#playerTarget {
-  width: 30%;
-  height: 50%;
-  border: black solid 2px;
-  border-radius: 5%
-}
 #botTarget {
   width: 21.5%;
   height: 60%;
@@ -152,6 +146,30 @@ h1 {
   background-size: cover;
   background-blend-mode: darken;
   animation: ;
+}
+.faceOff.p0 {
+  background-image: url('/images/rake.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: white;
+}
+.faceOff.p1 {
+  background-image: url('/images/brood.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;s
+  background-color: white;
+}
+.faceOff.p2 {
+  background-image: url('/images/trull.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: white;
 }
 #playGround {
   width: 100%;

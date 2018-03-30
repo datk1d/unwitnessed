@@ -56,13 +56,13 @@ export default class PlayArea extends Component {
           <div id="playGround">
             <div
               id="playerTarget"
-              className={this.props.gameState.pPlay ? `faceOff ${this.state.dropped}` : "faceOff"}
+              className={this.props.gameState.inPlay[0] ? `faceOff ${this.state.dropped}` : "faceOff"}
               onDrop={this.drop}
               onDragOver={this.allowDrop}
             ></div>
             <div
               id="botTarget"
-              className={this.state.aiPlay ? `faceOff ${this.state.aiPlayed}` : "faceOff"}></div>
+              className={this.props.gameState.inPlay[1] ? `faceOff ${this.props.gameState.inPlay[1].id}` : "faceOff"}></div>
           </div>
           <div id ="botDiv" className="row">
             <div id="b2" className="option two"></div>
