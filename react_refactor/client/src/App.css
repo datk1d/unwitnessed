@@ -1,0 +1,275 @@
+#land {
+  font-family: Verdana;
+  background-image: url("/images/landingpage.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: overlay;
+  background-color: black;
+}
+#lander {
+  min-height: 100vh;
+}
+#imageDiv {
+  background-image: url("/images/malazanHelm.png");
+  width: 776px;
+  height: 218px;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 24%;
+}
+#form {
+  position: absolute;
+  top: 40%;
+  left: 49.3%;
+  color: white;
+  display: flex;
+  font-weight: 500;
+  font-size: 30px;
+  padding-top: 1px;
+  padding-bottom: 3.5px;
+}
+#name {
+  margin: 2%;
+}
+a {
+  text-decoration: none;
+  color: #C0071E;
+}
+#playBtn {
+  padding-left: 3%;
+  padding-bottom: 2%;
+}
+#playBtn:hover {
+  color: #B1071C;
+  border-radius: 5px;
+  border: #071715 solid 2px;
+}
+h1 {
+  color: white;
+  position: absolute;
+  display: flex;
+  font-size: 80px;
+  left: 5%;
+  top: 10%;
+}
+#mainWrapper {
+  width: 100%;
+  height: 100%;
+}
+#headerDiv {
+  position: absolute;
+  background-color: #1D1075;
+  width: 100%;
+  height: 10%;
+  display: flex;
+}
+.counter {
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-weight: bold;
+  font-size: 22px;
+}
+#botCounter {
+  border: #1B15E5 solid 3px;
+  top: 22%;
+  left: 3%;
+  background-color: #57A7E5;
+}
+#playerCounter {
+  border: #AC1D1C solid 3px;
+  top: 22%;
+  left: 3%;
+  background-color: #BA5E57;
+}
+#footyDiv {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  top: 90%;
+}
+#boardDiv {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  top: 10%;
+  background-color: lightgrey;
+}
+.row {
+  width: 40%;
+  height: 30%;
+  display: flex;
+  position: absolute;
+}
+.option {
+  width: 24%;
+  height: 100%;
+  margin: 2%;
+  border: black solid 4px;
+  border-radius: 5%;
+}
+#playerTarget {
+  width: 30%;
+  height: 50%;
+  border: black solid 2px;
+  border-radius: 5%
+}
+#botTarget {
+  width: 21.5%;
+  height: 60%;
+  border: black solid 2px;
+  border-radius: 5%;
+  display: flex;
+  position: absolute;
+  left: 73%;
+  top: 34%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: darken;
+  animation: ;
+}
+#playerTarget {
+  width: 20%;
+  height: 60%;
+  border: black solid 2px;
+  border-radius: 3%;
+  display: flex;
+  position: absolute;
+  top: 6%;
+  left: 5.5%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: darken;
+  animation: ;
+}
+#playGround {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  top: 0%;
+  border: 2px solid black;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: darken;
+  background-image: ;
+}
+.zero {
+  background-image: url('/images/rake.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: white;
+  border-color: #1C1E57;
+}
+.one {
+  background-image: url('/images/brood.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: white;
+  border-color: #57A515;
+}
+.two {
+  background-image: url('/images/trull.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: white;
+  border-color: #B2BEB5;
+}
+#p0:hover {
+background-blend-mode: darken;
+}
+#p1:hover {
+background-blend-mode: darken;
+}
+#p2:hover {
+background-blend-mode: darken;
+}
+#botDiv {
+  bottom: 82%;
+  left: 50%;
+}
+#playerDiv {
+  top: 78%;
+  right: 50%;
+}
+#statusDisplay {
+  height: 45%;
+  width: 275px;
+  border-radius: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border: 2px solid white;
+  left: 74.5%;
+  top: 50%;
+  color: #0AF;
+  font-weight: 500;
+  font-size: 20px;
+}
+#nameDisplay {
+  height: 45%;
+  width: 175px;
+  border-radius: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border: 2px solid lightgrey;
+  left: 78%;
+  color: #B00B00;
+  font-weight: 400;
+  font-size: 20px;
+}
+@keyframes playerFadeOut {
+
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+@keyframes twoFadeOut {
+
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+/* Brood option image
+  http://vignette4.wikia.nocookie.net/malazan/images/6/61/Hammer_Time_by_Shadaan.jpg/revision/latest?cb=20150803043711
+ */
+/* Landing Page Image
+  http://2.bp.blogspot.com/-3sGyDScQ6XE/USjGZqIAonI/AAAAAAAAE-I/yuOFsrFPk5I/s1600/Heroes_by_Joe_Abercrombie_Wraparound.jpg
+*/
+/* Malazan Helm Image
+  https://vignette3.wikia.nocookie.net/malazan/images/d/d4/Helm_header_small.png/revision/latest?cb=20101222002529
+*/
+/* Rake's Image
+      https://vignette1.wikia.nocookie.net/malazan/images/b/b9/Anomander_by_slaine69-d75ve0w.jpg/revision/latest?cb=20150929095648
+*/
+/* Trull's image
+  https://s-media-cache-ak0.pinimg.com/originals/85/e2/1c/85e21cac53ac64477090785bebbc467d.jpg
+*/
+/* Trull's Background image
+  https://s-media-cache-ak0.pinimg.com/originals/7a/6a/36/7a6a366ca1f98f7f1672693ff304c294.jpg
+*/
+/* Caladan Brood wallpaper
+  https://www.walldevil.com/wallpapers/a80/wallpaper-caladan-castle-twitter-art-digital.jpg
+*/
+/* Seige of Pale Image
+      https://vignette2.wikia.nocookie.net/malazan/images/c/c0/Siege_Of_Pale.jpg/revision/latest?cb=20131013110158
+*/

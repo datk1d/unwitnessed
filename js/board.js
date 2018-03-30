@@ -1,23 +1,21 @@
-console.log('board.js has been chained');
-
 const options = [
   {
     code: 'r',
-    img: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/rake.jpg")',
-    bg: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/siegeOfPale.jpg")',
-    id: '#p0',
+    img: 'url("../assets/rake.jpg")',
+    bg: 'url("../assets/siegeOfPale.jpg")',
+    id: 'p0',
   },
   {
     code: 'b',
-    img: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/brood.jpg")',
-    bg: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/broodWall.jpg")',
-    id: '#p1',
+    img: 'url("../assets/brood.jpg")',
+    bg: 'url("../assets/broodWall.jpg")',
+    id: 'p1',
   },
   {
     code: 't',
-    img: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/trull.jpg")',
-    bg: 'url("file:///Users/student/wdi/unit-1/homeworks/first_game/assets/trullWall.jpg")',
-    id: '#p2'
+    img: 'url("../assets/trull.jpg")',
+    bg: 'url("../assets/trullWall.jpg")',
+    id: 'p2'
   },
 ];
 const board = {
