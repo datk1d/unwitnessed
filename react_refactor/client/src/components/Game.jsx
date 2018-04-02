@@ -14,6 +14,8 @@ export default class Game extends Component {
       playerRounds: 0,
       aiRounds: 0,
       inPlay: [],
+      playerDrop: String(),
+      aiDrop: String(),
       pPlay: false,
       aiPlay: false,
       playerOptions: [],
@@ -66,6 +68,7 @@ export default class Game extends Component {
           inPlay: prevState.inPlay.concat(this.state.playerOptions[i]),
           playerOptions: this.removeIndex(prevState.playerOptions, i, 1),
           pPlay: true,
+          playerDrop: dragged,
         }))
       }
     }
@@ -79,6 +82,7 @@ export default class Game extends Component {
       inPlay: prevState.inPlay.concat(play),
       aiOptions: this.removeIndex(prevState.aiOptions, rand, 1),
       aiPlay: true,
+      aiDrop: play.id,
     }))
     this.checkRound();
 
@@ -92,16 +96,13 @@ export default class Game extends Component {
   emptyInPlay(ray) {
     ray.length > 0 ? this.emptyInPlay(this.dumpArray(ray)) : ray
 
-//ray.length > 0 ? this.emptyInPlay(this.removeIndex(ray, ray.length - 1, 1))
     return ray
   }
   handleDraw() {
-    debugger;
     this.setState(prevState => ({
         //loop through the options and splice the matching inPlay option back into both player and bot's option arrays
         playerOptions: this.interateIndex(prevState.options, 0, prevState.inPlay[0], this.state.playerOptions),
         aiOptions: this.interateIndex(prevState.options, 0, prevState.inPlay[1], prevState.aiOptions),
-        //this.state.options.map((op, i) => op === this.state.inPlay[1] ? this.state.aiOptions.splice(i, 0, op) : console.log()),
         pPlay: false,
         aiPlay: false,
         roundWinner: 'Draw',
@@ -164,6 +165,7 @@ export default class Game extends Component {
       roundWinner: 'Bot',
     }))
   }
+
   componentDidMount() {
     this.setState({
       playerOptions: this.state.options.map(ray => ray),

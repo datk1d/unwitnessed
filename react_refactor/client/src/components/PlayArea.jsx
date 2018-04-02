@@ -20,7 +20,35 @@ export default class PlayArea extends Component {
       ]
     );
   };
+  faderFigurer(pOp, bOp, dropped){
+    //function to spit out the right classname for the targets based on the state of the game. Hopefully.
+    //maybe also the players draggable. post mvp though lol
 
+    //check for draw first
+    ////if draw, fadeBoth
+    ////if not, check for the winnner
+    //////if the winner is player, fadeOutSingle to bots loosing target
+    //////if bot is the winner, fadeOutSingle applied to the player
+    //trigger the next round after all animations are done.
+    if (this.props.gameState.roundWinner === 'Draw' ) {
+      return `fadeBoth ${this.props.gameState.playerDrop}`
+    }
+    else if (this.props.gameState.roundWinner === 'Player' && bOp === undefined) {
+      return `${pOp}`
+    }
+    else if (this.props.gameState.roundWinner === 'Player' && pOp === undefined) {
+      return `fadeOutSingle ${bOp}`
+    }
+    else if (this.props.gameState.roundWinner === 'Bot' && bOp === undefined) {
+      return `fadeOutSingle ${pOp}`
+    }
+    else if (this.props.gameState.roundWinner === 'Bot' && pOp === undefined) {
+      return `${bOp}`
+    }
+    else {
+      return 'holder'
+    }
+  }
   allowDrop(ev) {
     ev.preventDefault();
   }
@@ -56,7 +84,7 @@ export default class PlayArea extends Component {
           <div id="playGround">
             <div
               id="playerTarget"
-              className={this.props.gameState.inPlay[0] ? `faceOff ${this.state.dropped}` : "faceOff"}
+              className={this.faderFigurer(this.props.gameState.playerDrop)}
               onDrop={this.drop}
               onDragOver={this.allowDrop}
             ></div>
