@@ -58,7 +58,7 @@ export default class PlayArea extends Component {
   }
   drop(ev) {
     /* *Prevent default action for tthe drop event
-       *Gets the dragged option, triggers the corresponding T/F switch in state, sets the dropped option in state, and triggers the T/F switch for if the player has played.
+       *Gets the dragged option, triggers the corresponding T/F switch in state, sets the dropped option in state, and triggers the T/F switch for if the player has played. test
     */
     ev.preventDefault();
 
