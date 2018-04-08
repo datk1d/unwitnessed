@@ -20,7 +20,7 @@ export default class PlayArea extends Component {
       ]
     );
   };
-  faderFigurer(pOp, bOp, dropped){
+  faderFigurer(result, pos){
     //function to spit out the right classname for the targets based on the state of the game. Hopefully.
     //maybe also the players draggable. post mvp though lol
 
@@ -30,24 +30,22 @@ export default class PlayArea extends Component {
     //////if the winner is player, fadeOutSingle to bots loosing target
     //////if bot is the winner, fadeOutSingle applied to the player
     //trigger the next round after all animations are done.
-    if (this.props.gameState.roundWinner === 'Draw' ) {
-      return `fadeBoth ${this.props.gameState.playerDrop}`
+    if (result === 'Draw') {
+      return `fadeOutBoth`
     }
-    else if (this.props.gameState.roundWinner === 'Player' && bOp === undefined) {
-      return `${pOp}`
+    else if (result === 'Player' && pos === 'player') {
+      return String()
     }
-    else if (this.props.gameState.roundWinner === 'Player' && pOp === undefined) {
-      return `fadeOutSingle ${bOp}`
+    else if (result === 'Player' && pos === 'bot') {
+      return 'fadeOutSingle'
     }
-    else if (this.props.gameState.roundWinner === 'Bot' && bOp === undefined) {
-      return `fadeOutSingle ${pOp}`
+    else if (result === 'Bot' && pos === 'player') {
+      return 'fadeOutSingle'
     }
-    else if (this.props.gameState.roundWinner === 'Bot' && pOp === undefined) {
-      return `${bOp}`
+    else if (result === 'Bot' && pos === 'bot') {
+      return String()
     }
-    else {
-      return 'holder'
-    }
+    //this.props.newRound()
   }
   allowDrop(ev) {
     ev.preventDefault();
@@ -84,13 +82,13 @@ export default class PlayArea extends Component {
           <div id="playGround">
             <div
               id="playerTarget"
-              className={this.faderFigurer(this.props.gameState.playerDrop)}
+              className={this.props.gameState.inPlay[0] ? (this.props.gameState.roundWinner === String() ? `${this.props.gameState.inPlay[0].id}` : `${this.props.gameState.inPlay[0].id} ${this.faderFigurer(this.props.gameState.roundWinner, 'player')}`) : 'holder'}
               onDrop={this.drop}
               onDragOver={this.allowDrop}
             ></div>
             <div
               id="botTarget"
-              className={this.props.gameState.inPlay[1] ? `faceOff ${this.props.gameState.inPlay[1].id}` : "faceOff"}></div>
+              className={this.props.gameState.inPlay[1] ? (this.props.gameState.roundWinner === String() ? `${this.props.gameState.inPlay[1].id}` : `${this.props.gameState.inPlay[1].id} ${this.faderFigurer(this.props.gameState.roundWinner, 'bot')}`) : 'holder'}></div>
           </div>
           <div id ="botDiv" className="row">
             <div id="b2" className="option two"></div>

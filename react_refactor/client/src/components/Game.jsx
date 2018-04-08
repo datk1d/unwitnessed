@@ -16,12 +16,12 @@ export default class Game extends Component {
       inPlay: [],
       playerDrop: String(),
       aiDrop: String(),
+      roundWinner: String(),
+      gameWinner: String(),
       pPlay: false,
       aiPlay: false,
       playerOptions: [],
       aiOptions: [],
-      roundWinner: '',
-      gameWinner: '',
       options: [
         {
           code: 'r',
@@ -84,7 +84,7 @@ export default class Game extends Component {
       aiPlay: true,
       aiDrop: play.id,
     }))
-    this.checkRound();
+    setTimeout(() => this.checkRound(), 1500)
 
     //setTimeout(() => {this.cleanArea(); }, 3500);
   }
@@ -107,7 +107,7 @@ export default class Game extends Component {
         aiPlay: false,
         roundWinner: 'Draw',
       }))
-    this.emptyInPlay(this.state.inPlay)
+    setTimeout(() => this.emptyInPlay(this.state.inPlay), 2600)
   }
   checkRound() {
     if (this.state.inPlay[0] === this.state.inPlay[1]) {
@@ -188,6 +188,7 @@ export default class Game extends Component {
         <PlayArea
           gameState={this.state}
           playerDrop={this.playerDrop}
+          newRound={this.newRound}
         />
         <PlayerArea
           playerRounds={this.state.playerRounds}
