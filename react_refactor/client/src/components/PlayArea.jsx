@@ -20,7 +20,7 @@ export default class PlayArea extends Component {
       ]
     );
   };
-  faderFigurer(result, pos){
+
     //function to spit out the right classname for the targets based on the state of the game. Hopefully.
     //maybe also the players draggable. post mvp though lol
 
@@ -30,22 +30,11 @@ export default class PlayArea extends Component {
     //////if the winner is player, fadeOutSingle to bots loosing target
     //////if bot is the winner, fadeOutSingle applied to the player
     //trigger the next round after all animations are done.
-    if (result === 'Draw') {
-      return `fadeOutBoth`
-    }
-    else if (result === 'Player' && pos === 'player') {
-      return String()
-    }
-    else if (result === 'Player' && pos === 'bot') {
-      return 'fadeOutSingle'
-    }
-    else if (result === 'Bot' && pos === 'player') {
-      return 'fadeOutSingle'
-    }
-    else if (result === 'Bot' && pos === 'bot') {
-      return String()
-    }
-    //this.props.newRound()
+
+  faderFigurer(result, pos) {
+    setTimeout(() => this.props.newRound(), 2800)
+
+    return result === 'Draw' ? 'fadeOutBoth' : (result === 'Player' && pos === 'player' ? String() : (result === 'Player' && pos === 'bot' ? 'fadeOutSingle' : (result === 'Bot' && pos === 'player' ? 'fadeOutSingle' : (result === 'Bot' && pos === 'bot' ? String() : String()))))
   }
   allowDrop(ev) {
     ev.preventDefault();
