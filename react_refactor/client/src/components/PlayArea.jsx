@@ -6,12 +6,12 @@ export default class PlayArea extends Component {
     super(props);
 
     this.state = {
-      p0: false,
-      p1: false,
-      p2: false,
+      p0: true,
+      p1: true,
+      p2: true,
+      play: false,
       dropped: String(),
     };
-
     _.bindAll(
       this, [
         'allowDrop',
@@ -30,11 +30,39 @@ export default class PlayArea extends Component {
     //////if the winner is player, fadeOutSingle to bots loosing target
     //////if bot is the winner, fadeOutSingle applied to the player
     //trigger the next round after all animations are done.
+  cssWork(result, pos, dropped) {
+    if (result === String()) {
+      return dropped === undefined ? this.faderFigurer(result, pos, dropped) : this.dragFigurer(result, pos, dropped)
+    }
+    else {
+      setTimeout(() => this.props.newRound(), 2800)
 
-  faderFigurer(result, pos) {
-    setTimeout(() => this.props.newRound(), 2800)
+    return dropped === undefined ? this.faderFigurer(result, pos, dropped) : this.dragFigurer(result, pos, dropped)
+    }
 
-    return result === 'Draw' ? 'fadeOutBoth' : (result === 'Player' && pos === 'player' ? String() : (result === 'Player' && pos === 'bot' ? 'fadeOutSingle' : (result === 'Bot' && pos === 'player' ? 'fadeOutSingle' : (result === 'Bot' && pos === 'bot' ? String() : String()))))
+  }
+  dragFigurer(result, pos, dropped){
+    console.log(`pos: ${pos}, dropped: ${dropped}`)
+    if (pos === 'p0') {
+      return this.state.p0.toString()
+    }
+    else if (pos === 'p1') {
+      return this.state.p1.toString()
+    }
+    else if (pos === 'p2') {
+      return this.state.p2.toString()
+    }
+  }
+  faderFigurer(result, pos, dropped) {
+    return result === 'Draw' ? 'fadeOutBoth' :
+      (result === 'Player' && pos === 'player' ? String() :
+        (result === 'Player' && pos === 'bot' ? 'fadeOutSingle' :
+          (result === 'Bot' && pos === 'player' ? 'fadeOutSingle' :
+            (result === 'Bot' && pos === 'bot' ? String() : String()
+            )
+          )
+        )
+      )
   }
   allowDrop(ev) {
     ev.preventDefault();
@@ -52,13 +80,23 @@ export default class PlayArea extends Component {
     const dragged = ev.dataTransfer.getData('text');
 
     this.setState({
-      [dragged]: true,
+      [dragged]: false,
       dropped: dragged,
+      play: true,
     });
     console.log(this.props)
     this.props.playerDrop(dragged);
   }
   componentDidUpdate() {
+    if (this.state.dropped !== String() && this.state.play) {
+      if (this.props.gameState.roundWinner === 'Draw') {
+        this.setState({
+          [this.state.dropped]: true,
+          play: false,
+        })
+        return
+      }
+    }
     console.log(this.state)
   }
 
@@ -68,16 +106,16 @@ export default class PlayArea extends Component {
     return(
       <main>
         <div id="boardDiv">
-          <div id="playGround">
+          <div id="playGround" className={this.props.gameState.roundWinner === 'Player' ? `${this.props.gameState.inPlay[0].id}BG` : (this.props.gameState.roundWinner === 'Bot' ? `${this.props.gameState.inPlay[1].id}BG` : 'waiting')}>
             <div
               id="playerTarget"
-              className={this.props.gameState.inPlay[0] ? (this.props.gameState.roundWinner === String() ? `${this.props.gameState.inPlay[0].id}` : `${this.props.gameState.inPlay[0].id} ${this.faderFigurer(this.props.gameState.roundWinner, 'player')}`) : 'holder'}
+              className={this.props.gameState.inPlay[0] ? (this.props.gameState.roundWinner === String() ? `${this.props.gameState.inPlay[0].id}` : `${this.props.gameState.inPlay[0].id} ${this.cssWork(this.props.gameState.roundWinner, 'player')}`) : 'waiting'}
               onDrop={this.drop}
               onDragOver={this.allowDrop}
             ></div>
             <div
               id="botTarget"
-              className={this.props.gameState.inPlay[1] ? (this.props.gameState.roundWinner === String() ? `${this.props.gameState.inPlay[1].id}` : `${this.props.gameState.inPlay[1].id} ${this.faderFigurer(this.props.gameState.roundWinner, 'bot')}`) : 'holder'}></div>
+              className={this.props.gameState.inPlay[1] ? (this.props.gameState.roundWinner === String() ? `${this.props.gameState.inPlay[1].id}` : `${this.props.gameState.inPlay[1].id} ${this.cssWork(this.props.gameState.roundWinner, 'bot')}`) : 'holder'}></div>
           </div>
           <div id ="botDiv" className="row">
             <div id="b2" className="option two"></div>
@@ -88,19 +126,19 @@ export default class PlayArea extends Component {
             <div
               id="p0"
               className="option zero"
-              draggable={this.state.p0 ? "false" : "true"}
+              draggable={this.cssWork(this.props.gameState.roundWinner, 'p0', this.state.dropped)}
               onDragStart={this.drag}
             ></div>
             <div
               id="p1"
               className="option one"
-              draggable={this.state.p1 ? "false" : "true"}
+              draggable={this.cssWork(this.props.gameState.roundWinner, 'p1', this.state.dropped)}
               onDragStart={this.drag}
             ></div>
             <div
               id="p2"
               className="option two"
-              draggable={this.state.p2 ? "false" : "true"}
+              draggable={this.cssWork(this.props.gameState.roundWinner, 'p2', this.state.dropped)}
               onDragStart={this.drag}
             ></div>
           </div>

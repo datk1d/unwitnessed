@@ -263,6 +263,30 @@ background-blend-mode: darken;
 .fadeOutBoth{
   animation: twoFadeOut 2.5s ease-out 1s 1;
 }
+.p0BG{
+  background-image: url('/images/siegeOfPale.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: white;
+}
+.p1BG{
+  background-image: url('/images/broodWall.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: white;
+}
+.p2BG{
+  background-image: url('/images/trullWall.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: white;
+}
 @keyframes playerFadeOut {
 
   from{opacity: 1;}
