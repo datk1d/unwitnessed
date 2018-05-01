@@ -4,6 +4,7 @@ import _ from 'lodash';
 import AiArea from './AiArea';
 import PlayArea from './PlayArea';
 import PlayerArea from './PlayerArea';
+import Options from './Options';
 
 export default class Game extends Component {
   constructor(props) {
@@ -17,9 +18,9 @@ export default class Game extends Component {
       aiDrop: String(),
       roundWinner: String(),
       gameWinner: String(),
-      inPlay: Array(),
-      playerOptions: Array(),
-      aiOptions: Array(),
+      inPlay: [],
+      playerOptions: [],
+      aiOptions: [],
       options: [
         {
           code: 'r',
@@ -91,9 +92,12 @@ export default class Game extends Component {
     return ray
   }
   emptyInPlay(ray) {
-    ray.length > 0 ? this.emptyInPlay(this.dumpArray(ray)) : ray
-
-    return ray
+    if (ray.length > 0) {
+      this.emptyInPlay(this.dumpArray(ray));
+    }
+    else {
+      return ray
+    }
   }
   handleDraw() {
     this.setState(prevState => ({
@@ -136,14 +140,6 @@ export default class Game extends Component {
       })
     }
   }
-
-/*
-          playerFadeOut($els.dropArea);
-          setTimeout(() => {removeFadeOut($els.dropArea); }, 3510);
-
-          twoFadeOut()
-
-  */
   playerWin() {
     this.setState(prevState => ({
       playerRounds: prevState.playerRounds += 1,
@@ -163,8 +159,40 @@ export default class Game extends Component {
   newRound() {
     this.setState({
       roundWinner: String(),
+      playerDrop: String(),
+      aiDrop: String(),
     })
     this.emptyInPlay(this.state.inPlay)
+  }
+  statusWork(rW, gW) {
+    if (gW !== String()) {
+      if (gW === 'Player') {
+        return `${this.props.state.player} has won the game!`
+      }
+      else if (gW === 'Bot') {
+        return 'Too bad,the Bot has won the game :p'
+      }
+      else if (gW === 'Draw') {
+        return 'The game has ended in a draw!'
+      }
+      //if it is a string that is set with a game winner, do a thing
+        //if the winner is the player show "the player has won the game!"
+        //if it is the bot, return 'The Bot has won the game!'
+        //if draw, then return 'the game has ended in a draw'
+    }
+    else if (rW !== String()){
+      if (rW === 'Player') {
+        return `${this.props.state.player} has won this round!`
+      }
+      else if (rW === 'Bot') {
+        return 'The Bot has won this round!'
+      }
+      else if (rW === 'Draw') {
+        return 'This round has ended in a draw!'
+      }
+      //if the round winner is not an empty string, do the thing
+        //similar to above.
+    }
   }
   componentDidMount() {
     this.setState({
@@ -172,19 +200,18 @@ export default class Game extends Component {
       aiOptions: this.state.options.map(ray => ray),
     })
   }
-  componentWillReceiveProps(newProps) {
-    this.props !== newProps ? (this.props = newProps) : this.props
-  }
+  //componentWillReceiveProps(newProps) {
+    //this.props !== newProps ? (this.props = newProps) : this.props
+  //}
   componentDidUpdate() {
     console.log(this.state)
   }
 
   render() {
+
     return (
       <div id="mainWrapper">
-        <AiArea
-          aiRounds={this.state.aiRounds}
-        />
+        <AiArea aiRounds={this.state.aiRounds} />
         <PlayArea
           gameState={this.state}
           playerDrop={this.playerDrop}
@@ -193,8 +220,14 @@ export default class Game extends Component {
         <PlayerArea
           playerRounds={this.state.playerRounds}
           roundWinner={this.state.roundWinner}
-          winner={this.state.winner}
+          gameWinner={this.state.gameWinner}
           landingState={this.props.state}
+          statusWork={this.statusWork}
+        />
+        <Options
+          game={this.state.game}
+          roundWinner={this.state.roundWinner}
+          gameWinner={this.state.gameWinner}
         />
       </div>
     )
