@@ -62,16 +62,16 @@ export default class Game extends Component {
   }
 
   playerDrop(dragged, state) {
-    for (let i = 0; i < this.state.playerOptions.length; i++) {
-      if (dragged === this.state.playerOptions[i].id) {
-        this.setState(prevState => ({
-          inPlay: prevState.inPlay.concat(this.state.playerOptions[i]),
-          playerOptions: this.removeIndex(prevState.playerOptions, i, 1),
-          playerDrop: dragged,
-        }))
+      for (let i = 0; i < this.state.playerOptions.length; i++) {
+        if (dragged === this.state.playerOptions[i].id) {
+          this.setState(prevState => ({
+            inPlay: prevState.inPlay.concat(this.state.playerOptions[i]),
+            playerOptions: this.removeIndex(prevState.playerOptions, i, 1),
+            playerDrop: dragged,
+          }))
+        }
       }
-    }
-    setTimeout(() => {this.aiPlays(this.state); }, 1000); console.log(this.state)
+      setTimeout(() => {this.aiPlays(this.state); }, 1000); console.log(this.state)
   }
   aiPlays() {
     const rand = Math.floor((Math.random() * this.state.aiOptions.length) + 0)
@@ -83,8 +83,6 @@ export default class Game extends Component {
       aiDrop: play.id,
     }))
     setTimeout(() => this.checkRound(), 1500)
-
-    //setTimeout(() => {this.cleanArea(); }, 3500);
   }
   dumpArray(ray) {
     this.setState({inPlay: this.removeIndex(ray, ray.length - 1, 1)});
@@ -164,36 +162,6 @@ export default class Game extends Component {
     })
     this.emptyInPlay(this.state.inPlay)
   }
-  statusWork(rW, gW) {
-    if (gW !== String()) {
-      if (gW === 'Player') {
-        return `${this.props.state.player} has won the game!`
-      }
-      else if (gW === 'Bot') {
-        return 'Too bad,the Bot has won the game :p'
-      }
-      else if (gW === 'Draw') {
-        return 'The game has ended in a draw!'
-      }
-      //if it is a string that is set with a game winner, do a thing
-        //if the winner is the player show "the player has won the game!"
-        //if it is the bot, return 'The Bot has won the game!'
-        //if draw, then return 'the game has ended in a draw'
-    }
-    else if (rW !== String()){
-      if (rW === 'Player') {
-        return `${this.props.state.player} has won this round!`
-      }
-      else if (rW === 'Bot') {
-        return 'The Bot has won this round!'
-      }
-      else if (rW === 'Draw') {
-        return 'This round has ended in a draw!'
-      }
-      //if the round winner is not an empty string, do the thing
-        //similar to above.
-    }
-  }
   componentDidMount() {
     this.setState({
       playerOptions: this.state.options.map(ray => ray),
@@ -203,12 +171,7 @@ export default class Game extends Component {
   //componentWillReceiveProps(newProps) {
     //this.props !== newProps ? (this.props = newProps) : this.props
   //}
-  componentDidUpdate() {
-    console.log(this.state)
-  }
-
   render() {
-
     return (
       <div id="mainWrapper">
         <AiArea aiRounds={this.state.aiRounds} />
@@ -221,8 +184,7 @@ export default class Game extends Component {
           playerRounds={this.state.playerRounds}
           roundWinner={this.state.roundWinner}
           gameWinner={this.state.gameWinner}
-          landingState={this.props.state}
-          statusWork={this.statusWork}
+          landingState={this.props.landingState}
         />
         <Options
           game={this.state.game}

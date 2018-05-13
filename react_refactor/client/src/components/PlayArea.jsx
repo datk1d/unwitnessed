@@ -78,13 +78,12 @@ export default class PlayArea extends Component {
     ev.preventDefault();
 
     const dragged = ev.dataTransfer.getData('text');
-
+    console.log(`dragged: ${dragged}`)
     this.setState({
       [dragged]: false,
       dropped: dragged,
       play: true,
     });
-    console.log(this.props)
     this.props.playerDrop(dragged);
   }
   componentDidUpdate() {

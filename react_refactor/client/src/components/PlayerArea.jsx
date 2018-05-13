@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import Status from './Status'
+
 export default class PlayerArea extends Component {
   constructor(props) {
     super(props)
@@ -11,7 +13,13 @@ export default class PlayerArea extends Component {
       <footer>
         <div id="footyDiv">
           <div id="playerCounter" className="counter">{this.props.playerRounds}</div>
-          <div id="statusDisplay">{this.props.statusWork(this.props.roundWinner, this.props.gameWinner)}</div>
+          <div id="statusDisplay">
+            <Status
+              landingState={this.props.landingState}
+              roundWinner={this.props.roundWinner}
+              gameWinner={this.props.gameWinner}
+            />
+          </div>
           <div id="nameDisplay">{this.props.landingState.player}</div>
         </div>
       </footer>

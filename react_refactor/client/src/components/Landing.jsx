@@ -11,6 +11,7 @@ export default class Landing extends Component {
       player: '',
       name: false,
       game: false,
+      emptyName: false,
     };
 
     _.bindAll(
@@ -22,7 +23,6 @@ export default class Landing extends Component {
       ]
     );
   };
-
     handleNameChange(ev) {
       const target = ev.target;
       const value = target.type === 'checkbox' ? target.checked : target.value
@@ -31,24 +31,26 @@ export default class Landing extends Component {
         player: value,
       });
     }
-
     handlePlayBttn(ev) {
       this.setState({
         name: true,
       })
     }
-
     prevReload(ev) {
       ev.preventDefault()
     }
-
     startGame(ev) {
-      this.setState({
-        game: true,
-      })
+      if (this.state.player !== '' && this.state.name === true) {
+        this.setState({
+          game: true,
+        })
+      }
+      else {
+        this.setState({
+          emptyName: true,
+        })
+      }
     }
-
-
   render() {
     if (!this.state.game || !this.state.name) {
       return (
@@ -58,7 +60,8 @@ export default class Landing extends Component {
               unwitnessed
             </h1>
             <div id = "imageDiv"></div>
-            <div id = 'form'>
+            <div id = "form">
+            <div id = "status">{this.state.emptyName === true ? 'Enter A Name' : String()}</div>
               <form onSubmit={this.prevReload}>
                 {this.state.name ? (
                   <input
@@ -95,7 +98,7 @@ export default class Landing extends Component {
     else {
       return (
         <div>
-          <Game state={this.state} />
+          <Game landingState={this.state} />
         </div>
       )
     }
