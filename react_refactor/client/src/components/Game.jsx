@@ -61,19 +61,21 @@ export default class Game extends Component {
     return rayShelf;
   }
 
-  playerDrop(dragged, state) {
-      for (let i = 0; i < this.state.playerOptions.length; i++) {
-        if (dragged === this.state.playerOptions[i].id) {
-          this.setState(prevState => ({
-            inPlay: prevState.inPlay.concat(this.state.playerOptions[i]),
-            playerOptions: this.removeIndex(prevState.playerOptions, i, 1),
-            playerDrop: dragged,
-          }))
-        }
+  playerDrop(dragged) {
+    for (let i = 0; i < this.state.playerOptions.length; i++) {
+      if (dragged === this.state.playerOptions[i].id) {
+        this.setState(prevState => ({
+          inPlay: prevState.inPlay.concat(this.state.playerOptions[i]),
+          playerOptions: this.removeIndex(prevState.playerOptions, i, 1),
+          playerDrop: dragged,
+        }))
       }
-      setTimeout(() => {this.aiPlays(this.state); }, 1000); console.log(this.state)
+    }
+    //this.aiPlays()
+    setTimeout(() => {this.aiPlays(); }, 700);
   }
   aiPlays() {
+    if (this.state.inPlay[0]) {
     const rand = Math.floor((Math.random() * this.state.aiOptions.length) + 0)
     const play = this.state.aiOptions[rand];
 
@@ -83,6 +85,7 @@ export default class Game extends Component {
       aiDrop: play.id,
     }))
     setTimeout(() => this.checkRound(), 1500)
+    }
   }
   dumpArray(ray) {
     this.setState({inPlay: this.removeIndex(ray, ray.length - 1, 1)});
@@ -168,9 +171,6 @@ export default class Game extends Component {
       aiOptions: this.state.options.map(ray => ray),
     })
   }
-  //componentWillReceiveProps(newProps) {
-    //this.props !== newProps ? (this.props = newProps) : this.props
-  //}
   render() {
     return (
       <div id="mainWrapper">

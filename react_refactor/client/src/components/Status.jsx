@@ -41,8 +41,6 @@ export default class Status extends Component {
     }
   }
   render() {
-    // || !this.props.options
-    // this.statusShower
     return(
       <div>{this.statusWork(this.props.roundWinner, this.props.gameWinner)}</div>
     )

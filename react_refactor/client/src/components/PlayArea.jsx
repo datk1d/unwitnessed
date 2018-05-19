@@ -42,7 +42,6 @@ export default class PlayArea extends Component {
 
   }
   dragFigurer(result, pos, dropped){
-    console.log(`pos: ${pos}, dropped: ${dropped}`)
     if (pos === 'p0') {
       return this.state.p0.toString()
     }
@@ -78,7 +77,7 @@ export default class PlayArea extends Component {
     ev.preventDefault();
 
     const dragged = ev.dataTransfer.getData('text');
-    console.log(`dragged: ${dragged}`)
+
     this.setState({
       [dragged]: false,
       dropped: dragged,
@@ -86,14 +85,14 @@ export default class PlayArea extends Component {
     });
     this.props.playerDrop(dragged);
   }
-  componentDidUpdate() {
+  shouldComponentUpdate() {
     if (this.state.dropped !== String() && this.state.play) {
       if (this.props.gameState.roundWinner === 'Draw') {
         this.setState({
           [this.state.dropped]: true,
           play: false,
         })
-        return
+        return false
       }
     }
     console.log(this.state)
@@ -101,7 +100,6 @@ export default class PlayArea extends Component {
 
 //style={{backgroundImage: "url(" + Background + ")"}}
   render() {
-    //`faceOff ${this.state.dropped}
     return(
       <main>
         <div id="boardDiv">
