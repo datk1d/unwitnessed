@@ -71,20 +71,19 @@ export default class Game extends Component {
         }))
       }
     }
-    //this.aiPlays()
     setTimeout(() => {this.aiPlays(); }, 700);
   }
   aiPlays() {
     if (this.state.inPlay[0]) {
-    const rand = Math.floor((Math.random() * this.state.aiOptions.length) + 0)
-    const play = this.state.aiOptions[rand];
+      const rand = Math.floor((Math.random() * this.state.aiOptions.length) + 0)
+      const play = this.state.aiOptions[rand];
 
-    this.setState(prevState => ({
-      inPlay: prevState.inPlay.concat(play),
-      aiOptions: this.removeIndex(prevState.aiOptions, rand, 1),
-      aiDrop: play.id,
-    }))
-    setTimeout(() => this.checkRound(), 1500)
+      this.setState(prevState => ({
+        inPlay: prevState.inPlay.concat(play),
+        aiOptions: this.removeIndex(prevState.aiOptions, rand, 1),
+        aiDrop: play.id,
+      }))
+      setTimeout(() => this.checkRound(), 100)
     }
   }
   dumpArray(ray) {
@@ -107,9 +106,12 @@ export default class Game extends Component {
         aiOptions: this.interateIndex(prevState.options, 0, prevState.inPlay[1], prevState.aiOptions),
         roundWinner: 'Draw',
       }))
-    setTimeout(() => this.emptyInPlay(this.state.inPlay), 2600)
+    //this.emptyInPlay(this.state.inPlay)
+    setTimeout(() => this.emptyInPlay(this.state.inPlay), 2505)
   }
   checkRound() {
+    this.gameCheck();
+
     if (this.state.inPlay[0] === this.state.inPlay[1]) {
       this.handleDraw();
     }

@@ -6,7 +6,7 @@ export default class Status extends Component {
   };
   handleGameWinner(gW) {
     if (gW === 'Player') {
-        return `${this.props.landingState.player} has won the game!`
+      return `${this.props.landingState.player} has won the game!`
     }
     else if (gW === 'Bot') {
       return 'Too bad,the Bot has won the game :p'

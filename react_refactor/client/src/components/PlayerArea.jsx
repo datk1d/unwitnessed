@@ -9,6 +9,7 @@ export default class PlayerArea extends Component {
 
   }
   render() {
+    console.log(`inside playerArea renda`)
     return(
       <footer>
         <div id="footyDiv">

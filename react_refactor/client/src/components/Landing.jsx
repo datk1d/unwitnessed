@@ -41,17 +41,12 @@ export default class Landing extends Component {
     }
     startGame(ev) {
       if (this.state.player !== '' && this.state.name === true) {
-        this.setState({
-          game: true,
-        })
+        this.setState({ game: true, })
       }
       else {
-        this.setState({
-          emptyName: true,
-        })
+        this.setState({ emptyName: true, })
       }
     }
-    //startGame, handlePlayBttn
     playBtn(fn) {
       return (
         <div
@@ -63,9 +58,6 @@ export default class Landing extends Component {
       )
     }
   render() {
-    const startGame = this.startGame
-    const handlePlayBttn = this.handlePlayBttn
-
     if (!this.state.game || !this.state.name) {
       return (
         <main id="land">

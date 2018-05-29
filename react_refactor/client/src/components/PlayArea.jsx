@@ -10,6 +10,7 @@ export default class PlayArea extends Component {
       p1: true,
       p2: true,
       play: false,
+      drawCheck: this.props.gameState.roundWinner === 'Draw' ? true : false,
       dropped: String(),
     };
     _.bindAll(
@@ -35,11 +36,10 @@ export default class PlayArea extends Component {
       return dropped === undefined ? this.faderFigurer(result, pos, dropped) : this.dragFigurer(result, pos, dropped)
     }
     else {
-      setTimeout(() => this.props.newRound(), 2800)
 
-    return dropped === undefined ? this.faderFigurer(result, pos, dropped) : this.dragFigurer(result, pos, dropped)
+
+      return dropped === undefined ? this.faderFigurer(result, pos, dropped) : this.dragFigurer(result, pos, dropped)
     }
-
   }
   dragFigurer(result, pos, dropped){
     if (pos === 'p0') {
@@ -82,24 +82,52 @@ export default class PlayArea extends Component {
       [dragged]: false,
       dropped: dragged,
       play: true,
+      drawCheck: !this.state.drawCheck,
     });
     this.props.playerDrop(dragged);
+    console.log(`draw check after: ${this.state.drawCheck}`)
   }
-  shouldComponentUpdate() {
-    if (this.state.dropped !== String() && this.state.play) {
-      if (this.props.gameState.roundWinner === 'Draw') {
-        this.setState({
-          [this.state.dropped]: true,
-          play: false,
-        })
-        return false
-      }
-    }
-    console.log(this.state)
+  reInitDrawOption(dropped) {
+    this.setState({
+      [dropped]: true,
+      play: false,
+      drawCheck: true,
+    })
+    return this.state.play
+  }
+  resetPlay() {
+    this.setState({ play: false, })
+
+    return this.state.play
   }
 
-//style={{backgroundImage: "url(" + Background + ")"}}
+  //componentDidUpdate()
+  /*if (this.state.dropped !== String() && this.state.play) {
+
+        }
+        else {
+          return setTimeout(() => this.resetPlay(), 3030)
+        }
+      }
+      return this.state.play
+    }*/
+  shouldComponentUpdate() {
+    //if inplay, check for draw. If draw, re-init the dropped option after the
+    if (this.props.gameState.inPlay[1]) {
+      if (!this.state.drawCheck) {
+        return setTimeout(() => this.reInitDrawOption(this.props.gameState.playerDrop), 3307)
+      }
+      else {
+        return setTimeout(() => this.resetPlay(), 3307)
+      }
+    }
+    else {
+      return this.state.play
+    }
+  }
+
   render() {
+    console.log('play area renda')
     return(
       <main>
         <div id="boardDiv">
@@ -112,7 +140,7 @@ export default class PlayArea extends Component {
             ></div>
             <div
               id="botTarget"
-              className={this.props.gameState.inPlay[1] ? (this.props.gameState.roundWinner === String() ? `${this.props.gameState.inPlay[1].id}` : `${this.props.gameState.inPlay[1].id} ${this.cssWork(this.props.gameState.roundWinner, 'bot')}`) : 'holder'}></div>
+              className={this.props.gameState.inPlay[1] ? (this.props.gameState.roundWinner === String() ? `${this.props.gameState.inPlay[1].id}` : `${this.props.gameState.inPlay[1].id} ${this.cssWork(this.props.gameState.roundWinner, 'bot')}`) : 'waiting'}></div>
           </div>
           <div id ="botDiv" className="row">
             <div id="b2" className="option two"></div>
