@@ -71,7 +71,7 @@ export default class Game extends Component {
         }))
       }
     }
-    setTimeout(() => {this.aiPlays(); }, 700);
+    setTimeout(() => this.aiPlays(), 700);
   }
   aiPlays() {
     if (this.state.inPlay[0]) {
@@ -83,7 +83,7 @@ export default class Game extends Component {
         aiOptions: this.removeIndex(prevState.aiOptions, rand, 1),
         aiDrop: play.id,
       }))
-      setTimeout(() => this.checkRound(), 100)
+      this.checkRound()
     }
   }
   dumpArray(ray) {
@@ -106,8 +106,11 @@ export default class Game extends Component {
         aiOptions: this.interateIndex(prevState.options, 0, prevState.inPlay[1], prevState.aiOptions),
         roundWinner: 'Draw',
       }))
-    //this.emptyInPlay(this.state.inPlay)
-    setTimeout(() => this.emptyInPlay(this.state.inPlay), 2505)
+
+    setTimeout(() => {
+      this.emptyInPlay(this.state.inPlay)
+      this.newRound()
+    }, 2505)
   }
   checkRound() {
     this.gameCheck();
@@ -150,6 +153,7 @@ export default class Game extends Component {
       aiPlay: false,
       roundWinner: 'Player',
     }))
+    setTimeout(() => this.newRound(), 2515)
   }
   aiWin() {
     this.setState(prevState => ({
@@ -158,6 +162,7 @@ export default class Game extends Component {
       aiPlay: false,
       roundWinner: 'Bot',
     }))
+    setTimeout(() => this.newRound(), 2515)
   }
   newRound() {
     this.setState({
@@ -180,7 +185,6 @@ export default class Game extends Component {
         <PlayArea
           gameState={this.state}
           playerDrop={this.playerDrop}
-          newRound={this.newRound}
         />
         <PlayerArea
           playerRounds={this.state.playerRounds}

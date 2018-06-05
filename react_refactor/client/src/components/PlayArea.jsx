@@ -10,7 +10,7 @@ export default class PlayArea extends Component {
       p1: true,
       p2: true,
       play: false,
-      drawCheck: this.props.gameState.roundWinner === 'Draw' ? true : false,
+      drawCheck: false,
       dropped: String(),
     };
     _.bindAll(
@@ -82,38 +82,25 @@ export default class PlayArea extends Component {
       [dragged]: false,
       dropped: dragged,
       play: true,
-      drawCheck: !this.state.drawCheck,
+      drawCheck: true,
     });
     this.props.playerDrop(dragged);
-    console.log(`draw check after: ${this.state.drawCheck}`)
   }
   reInitDrawOption(dropped) {
+    console.log(`draw op: ${dropped}`)
     this.setState({
       [dropped]: true,
-      play: false,
-      drawCheck: true,
+      //play: false,
+      drawCheck: false,
     })
     return this.state.play
   }
   resetPlay() {
     this.setState({ play: false, })
-
-    return this.state.play
   }
 
   //componentDidUpdate()
-  /*if (this.state.dropped !== String() && this.state.play) {
-
-        }
-        else {
-          return setTimeout(() => this.resetPlay(), 3030)
-        }
-      }
-      return this.state.play
-    }*/
-  shouldComponentUpdate() {
-    //if inplay, check for draw. If draw, re-init the dropped option after the
-    if (this.props.gameState.inPlay[1]) {
+  /*if (this.props.gameState.inPlay[1]) {
       if (!this.state.drawCheck) {
         return setTimeout(() => this.reInitDrawOption(this.props.gameState.playerDrop), 3307)
       }
@@ -122,8 +109,24 @@ export default class PlayArea extends Component {
       }
     }
     else {
+
       return this.state.play
     }
+    }*/
+  shouldComponentUpdate() {
+    //if inplay, check for draw. If draw, re-init the dropped option after the
+    console.log(this.props.gameState.roundWinner, this.state.drawCheck)
+    if (this.props.gameState.roundWinner === 'Draw' && this.state.drawCheck) {
+
+      console.log('inside draw check')
+
+      this.reInitDrawOption(this.props.gameState.playerDrop)
+
+    }
+    else {
+      return this.state.play
+    }
+    return this.state.play
   }
 
   render() {
