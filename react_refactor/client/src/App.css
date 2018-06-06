@@ -1,11 +1,10 @@
 #land {
   font-family: Verdana;
-  background-image: url("/images/landingpage.jpg");
+  background-image: url("/images/landing.jpg");
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center;
   background-size: cover;
   background-blend-mode: overlay;
-  background-color: black;
 }
 #lander {
   min-height: 100vh;

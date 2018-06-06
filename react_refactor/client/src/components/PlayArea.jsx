@@ -33,15 +33,13 @@ export default class PlayArea extends Component {
     //trigger the next round after all animations are done.
   cssWork(result, pos, dropped) {
     if (result === String()) {
-      return dropped === undefined ? this.faderFigurer(result, pos, dropped) : this.dragFigurer(result, pos, dropped)
+      return dropped === undefined ? this.faderFigurer(result, pos) : this.dragFigurer(result, pos)
     }
     else {
-
-
-      return dropped === undefined ? this.faderFigurer(result, pos, dropped) : this.dragFigurer(result, pos, dropped)
+      return dropped === undefined ? this.faderFigurer(result, pos) : this.dragFigurer(result, pos)
     }
   }
-  dragFigurer(result, pos, dropped){
+  dragFigurer(result, pos){
     if (pos === 'p0') {
       return this.state.p0.toString()
     }
@@ -52,7 +50,7 @@ export default class PlayArea extends Component {
       return this.state.p2.toString()
     }
   }
-  faderFigurer(result, pos, dropped) {
+  faderFigurer(result, pos) {
     return result === 'Draw' ? 'fadeOutBoth' :
       (result === 'Player' && pos === 'player' ? String() :
         (result === 'Player' && pos === 'bot' ? 'fadeOutSingle' :
@@ -90,7 +88,6 @@ export default class PlayArea extends Component {
     console.log(`draw op: ${dropped}`)
     this.setState({
       [dropped]: true,
-      //play: false,
       drawCheck: false,
     })
     return this.state.play
@@ -99,29 +96,10 @@ export default class PlayArea extends Component {
     this.setState({ play: false, })
   }
 
-  //componentDidUpdate()
-  /*if (this.props.gameState.inPlay[1]) {
-      if (!this.state.drawCheck) {
-        return setTimeout(() => this.reInitDrawOption(this.props.gameState.playerDrop), 3307)
-      }
-      else {
-        return setTimeout(() => this.resetPlay(), 3307)
-      }
-    }
-    else {
-
-      return this.state.play
-    }
-    }*/
   shouldComponentUpdate() {
     //if inplay, check for draw. If draw, re-init the dropped option after the
-    console.log(this.props.gameState.roundWinner, this.state.drawCheck)
     if (this.props.gameState.roundWinner === 'Draw' && this.state.drawCheck) {
-
-      console.log('inside draw check')
-
       this.reInitDrawOption(this.props.gameState.playerDrop)
-
     }
     else {
       return this.state.play

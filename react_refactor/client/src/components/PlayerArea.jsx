@@ -1,29 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import Status from './Status'
 
-export default class PlayerArea extends Component {
-  constructor(props) {
-    super(props)
-
-
-  }
-  render() {
-    console.log(`inside playerArea renda`)
-    return(
-      <footer>
-        <div id="footyDiv">
-          <div id="playerCounter" className="counter">{this.props.playerRounds}</div>
-          <div id="statusDisplay">
-            <Status
-              landingState={this.props.landingState}
-              roundWinner={this.props.roundWinner}
-              gameWinner={this.props.gameWinner}
-            />
-          </div>
-          <div id="nameDisplay">{this.props.landingState.player}</div>
+const PlayerArea = props => {
+  return(
+    <footer>
+      <div id="footyDiv">
+        <div id="playerCounter" className="counter">{props.playerRounds}</div>
+        <div id="statusDisplay">
+          <Status
+            landingState={props.landingState}
+            roundWinner={props.roundWinner}
+            gameWinner={props.gameWinner}
+          />
         </div>
-      </footer>
-    )
-  }
+        <div id="nameDisplay">{props.landingState.player}</div>
+      </div>
+    </footer>
+  )
 }
+export default PlayerArea

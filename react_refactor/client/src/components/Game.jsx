@@ -107,14 +107,9 @@ export default class Game extends Component {
         roundWinner: 'Draw',
       }))
 
-    setTimeout(() => {
-      this.emptyInPlay(this.state.inPlay)
-      this.newRound()
-    }, 2505)
+    setTimeout(() => this.newRound(), 2505)
   }
   checkRound() {
-    this.gameCheck();
-
     if (this.state.inPlay[0] === this.state.inPlay[1]) {
       this.handleDraw();
     }
@@ -139,7 +134,7 @@ export default class Game extends Component {
         gameWinner: 'Bot',
       })
     }
-    else if (this.state.playerRounds === 1 && this.state.aiRounds === 1 && this.state.inPlay[0] === this.state.inPlay[1]) {
+    else if (this.state.playerRounds === 1 && this.state.aiRounds === 1 && this.state.playerOptions[0] === this.state.aiOptions[0]) {
       this.setState({
         game: false,
         gameWinner: 'Draw',
@@ -171,6 +166,7 @@ export default class Game extends Component {
       aiDrop: String(),
     })
     this.emptyInPlay(this.state.inPlay)
+    this.gameCheck();
   }
   componentDidMount() {
     this.setState({
@@ -182,15 +178,15 @@ export default class Game extends Component {
     return (
       <div id="mainWrapper">
         <AiArea aiRounds={this.state.aiRounds} />
-        <PlayArea
-          gameState={this.state}
-          playerDrop={this.playerDrop}
-        />
         <PlayerArea
           playerRounds={this.state.playerRounds}
           roundWinner={this.state.roundWinner}
           gameWinner={this.state.gameWinner}
           landingState={this.props.landingState}
+        />
+        <PlayArea
+          gameState={this.state}
+          playerDrop={this.playerDrop}
         />
         <Options
           game={this.state.game}
