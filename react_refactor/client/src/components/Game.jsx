@@ -141,6 +141,7 @@ export default class Game extends Component {
       })
     }
   }
+
   playerWin() {
     this.setState(prevState => ({
       playerRounds: prevState.playerRounds += 1,

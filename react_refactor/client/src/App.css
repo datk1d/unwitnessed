@@ -183,7 +183,7 @@ h1 {
   background-blend-mode: darken;
   background-image: ;
 }
-.zero {
+.o0 {
   background-image: url('/images/rake.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -192,7 +192,7 @@ h1 {
   background-color: white;
   border-color: #1C1E57;
 }
-.one {
+.o1 {
   background-image: url('/images/brood.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -201,7 +201,7 @@ h1 {
   background-color: white;
   border-color: #57A515;
 }
-.two {
+.o2 {
   background-image: url('/images/trull.jpg');
   background-repeat: no-repeat;
   background-position: center center;

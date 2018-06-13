@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
+import Option from '../partials/Option'
 
 export default class PlayArea extends Component {
   constructor(props) {
@@ -18,28 +19,26 @@ export default class PlayArea extends Component {
         'allowDrop',
         'drag',
         'drop',
+        'cssWork',
+        'dragGetter',
+        'faderFigurer'
       ]
     );
   };
 
-    //function to spit out the right classname for the targets based on the state of the game. Hopefully.
-    //maybe also the players draggable. post mvp though lol
+    //function to spit out the right classname for the targets based on the state of the game.
+    //Also figures out which of the player's options are draggable.
 
-    //check for draw first
-    ////if draw, fadeBoth
-    ////if not, check for the winnner
-    //////if the winner is player, fadeOutSingle to bots loosing target
-    //////if bot is the winner, fadeOutSingle applied to the player
-    //trigger the next round after all animations are done.
+
   cssWork(result, pos, dropped) {
     if (result === String()) {
-      return dropped === undefined ? this.faderFigurer(result, pos) : this.dragFigurer(result, pos)
+      return dropped === undefined ? this.faderFigurer(result, pos) : this.dragGetter(pos)
     }
     else {
-      return dropped === undefined ? this.faderFigurer(result, pos) : this.dragFigurer(result, pos)
+      return dropped === undefined ? this.faderFigurer(result, pos) : this.dragGetter(pos)
     }
   }
-  dragFigurer(result, pos){
+  dragGetter(pos){
     if (pos === 'p0') {
       return this.state.p0.toString()
     }
@@ -72,8 +71,6 @@ export default class PlayArea extends Component {
     /* *Prevent default action for tthe drop event
        *Gets the dragged option, triggers the corresponding T/F switch in state, sets the dropped option in state, and triggers the T/F switch for if the player has played.
     */
-    ev.preventDefault();
-
     const dragged = ev.dataTransfer.getData('text');
 
     this.setState({
@@ -85,15 +82,24 @@ export default class PlayArea extends Component {
     this.props.playerDrop(dragged);
   }
   reInitDrawOption(dropped) {
-    console.log(`draw op: ${dropped}`)
     this.setState({
       [dropped]: true,
       drawCheck: false,
     })
     return this.state.play
   }
-  resetPlay() {
-    this.setState({ play: false, })
+  renderOptions(position) {
+    return this.props.gameState.options.map((ele, i) => {
+      return (<Option
+        key={`p${i}`}
+        gameState={this.props.gameState}
+        position={position}
+        i={i}
+        cssWork={this.cssWork}
+        drag={this.drag}
+        dropped={this.state.dropped}
+      />)
+    })
   }
 
   shouldComponentUpdate() {
@@ -108,7 +114,6 @@ export default class PlayArea extends Component {
   }
 
   render() {
-    console.log('play area renda')
     return(
       <main>
         <div id="boardDiv">
@@ -124,30 +129,9 @@ export default class PlayArea extends Component {
               className={this.props.gameState.inPlay[1] ? (this.props.gameState.roundWinner === String() ? `${this.props.gameState.inPlay[1].id}` : `${this.props.gameState.inPlay[1].id} ${this.cssWork(this.props.gameState.roundWinner, 'bot')}`) : 'waiting'}></div>
           </div>
           <div id ="botDiv" className="row">
-            <div id="b2" className="option two"></div>
-            <div id="b1" className="option one"></div>
-            <div id="b0" className="option zero"></div>
+             {this.renderOptions()}
           </div>
-          <div id="playerDiv" className="row">
-            <div
-              id="p0"
-              className="option zero"
-              draggable={this.cssWork(this.props.gameState.roundWinner, 'p0', this.state.dropped)}
-              onDragStart={this.drag}
-            ></div>
-            <div
-              id="p1"
-              className="option one"
-              draggable={this.cssWork(this.props.gameState.roundWinner, 'p1', this.state.dropped)}
-              onDragStart={this.drag}
-            ></div>
-            <div
-              id="p2"
-              className="option two"
-              draggable={this.cssWork(this.props.gameState.roundWinner, 'p2', this.state.dropped)}
-              onDragStart={this.drag}
-            ></div>
-          </div>
+          <div id="playerDiv" className="row">{this.renderOptions('player')}</div>
         </div>
       </main>
     )
