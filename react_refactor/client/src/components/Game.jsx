@@ -4,6 +4,7 @@ import _ from 'lodash';
 import AiArea from './AiArea';
 import PlayArea from './PlayArea';
 import PlayerArea from './PlayerArea';
+import Options from './Options';
 
 export default class Game extends Component {
   constructor(props) {
@@ -11,17 +12,16 @@ export default class Game extends Component {
 
     this.state = {
       game: true,
+      new: false,
       playerRounds: 0,
       aiRounds: 0,
-      inPlay: [],
       playerDrop: String(),
       aiDrop: String(),
-      pPlay: false,
-      aiPlay: false,
+      roundWinner: String(),
+      gameWinner: String(),
+      inPlay: [],
       playerOptions: [],
       aiOptions: [],
-      roundWinner: '',
-      gameWinner: '',
       options: [
         {
           code: 'r',
@@ -44,10 +44,7 @@ export default class Game extends Component {
       ],
     }
     _.bindAll(
-      this, [
-        'playerDrop',
-        'aiPlays',
-      ]
+      this, ['playerDrop', 'aiPlays', 'newRound',]
     )
   }
   removeIndex(ray, ind, amt, thing) {
@@ -61,32 +58,30 @@ export default class Game extends Component {
     return rayShelf;
   }
 
-  playerDrop(dragged, state) {
+  playerDrop(dragged) {
     for (let i = 0; i < this.state.playerOptions.length; i++) {
       if (dragged === this.state.playerOptions[i].id) {
         this.setState(prevState => ({
           inPlay: prevState.inPlay.concat(this.state.playerOptions[i]),
           playerOptions: this.removeIndex(prevState.playerOptions, i, 1),
-          pPlay: true,
           playerDrop: dragged,
         }))
       }
     }
-    setTimeout(() => {this.aiPlays(this.state); }, 1000); console.log(this.state)
+    setTimeout(() => this.aiPlays(), 700);
   }
   aiPlays() {
-    const rand = Math.floor((Math.random() * this.state.aiOptions.length) + 0)
-    const play = this.state.aiOptions[rand];
+    if (this.state.inPlay[0]) {
+      const rand = Math.floor((Math.random() * this.state.aiOptions.length) + 0)
+      const play = this.state.aiOptions[rand];
 
-    this.setState(prevState => ({
-      inPlay: prevState.inPlay.concat(play),
-      aiOptions: this.removeIndex(prevState.aiOptions, rand, 1),
-      aiPlay: true,
-      aiDrop: play.id,
-    }))
-    this.checkRound();
-
-    //setTimeout(() => {this.cleanArea(); }, 3500);
+      this.setState(prevState => ({
+        inPlay: prevState.inPlay.concat(play),
+        aiOptions: this.removeIndex(prevState.aiOptions, rand, 1),
+        aiDrop: play.id,
+      }))
+      this.checkRound()
+    }
   }
   dumpArray(ray) {
     this.setState({inPlay: this.removeIndex(ray, ray.length - 1, 1)});
@@ -94,20 +89,22 @@ export default class Game extends Component {
     return ray
   }
   emptyInPlay(ray) {
-    ray.length > 0 ? this.emptyInPlay(this.dumpArray(ray)) : ray
-
-    return ray
+    if (ray.length > 0) {
+      this.emptyInPlay(this.dumpArray(ray));
+    }
+    else {
+      return ray
+    }
   }
   handleDraw() {
     this.setState(prevState => ({
         //loop through the options and splice the matching inPlay option back into both player and bot's option arrays
         playerOptions: this.interateIndex(prevState.options, 0, prevState.inPlay[0], this.state.playerOptions),
         aiOptions: this.interateIndex(prevState.options, 0, prevState.inPlay[1], prevState.aiOptions),
-        pPlay: false,
-        aiPlay: false,
         roundWinner: 'Draw',
       }))
-    this.emptyInPlay(this.state.inPlay)
+
+    setTimeout(() => this.newRound(), 2505)
   }
   checkRound() {
     if (this.state.inPlay[0] === this.state.inPlay[1]) {
@@ -134,7 +131,7 @@ export default class Game extends Component {
         gameWinner: 'Bot',
       })
     }
-    else if (this.state.playerRounds === 1 && this.state.aiRounds === 1 && this.state.inPlay[0] === this.state.inPlay[1]) {
+    else if (this.state.playerRounds === 1 && this.state.aiRounds === 1 && this.state.playerOptions[0] === this.state.aiOptions[0]) {
       this.setState({
         game: false,
         gameWinner: 'Draw',
@@ -142,13 +139,6 @@ export default class Game extends Component {
     }
   }
 
-/*
-          playerFadeOut($els.dropArea);
-          setTimeout(() => {removeFadeOut($els.dropArea); }, 3510);
-
-          twoFadeOut()
-
-  */
   playerWin() {
     this.setState(prevState => ({
       playerRounds: prevState.playerRounds += 1,
@@ -156,6 +146,7 @@ export default class Game extends Component {
       aiPlay: false,
       roundWinner: 'Player',
     }))
+    setTimeout(() => this.newRound(), 2515)
   }
   aiWin() {
     this.setState(prevState => ({
@@ -164,6 +155,16 @@ export default class Game extends Component {
       aiPlay: false,
       roundWinner: 'Bot',
     }))
+    setTimeout(() => this.newRound(), 2515)
+  }
+  newRound() {
+    this.setState({
+      roundWinner: String(),
+      playerDrop: String(),
+      aiDrop: String(),
+    })
+    this.emptyInPlay(this.state.inPlay)
+    this.gameCheck();
   }
 
   componentDidMount() {
@@ -172,28 +173,28 @@ export default class Game extends Component {
       aiOptions: this.state.options.map(ray => ray),
     })
   }
-  componentWillReceiveProps(newProps) {
-    this.props !== newProps ? (this.props = newProps) : this.props
-  }
-  componentDidUpdate() {
-    console.log(this.state)
-  }
 
   render() {
     return (
       <div id="mainWrapper">
-        <AiArea
-          aiRounds={this.state.aiRounds}
+        <AiArea aiRounds={this.state.aiRounds} />
+        <PlayerArea
+          playerRounds={this.state.playerRounds}
+          roundWinner={this.state.roundWinner}
+          gameWinner={this.state.gameWinner}
+          landingState={this.props.landingState}
         />
         <PlayArea
           gameState={this.state}
           playerDrop={this.playerDrop}
+          switchNew={this.switchNew}
         />
-        <PlayerArea
-          playerRounds={this.state.playerRounds}
+        <Options
+          game={this.state.game}
+          landingState={this.props.landingState}
           roundWinner={this.state.roundWinner}
-          winner={this.state.winner}
-          landingState={this.props.state}
+          gameWinner={this.state.gameWinner}
+          new={this.props.new}
         />
       </div>
     )

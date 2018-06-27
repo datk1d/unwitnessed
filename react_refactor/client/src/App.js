@@ -3,8 +3,6 @@ import {Route, Redirect, Switch, BrowserRouter as Router} from 'react-router-dom
 
 import Landing from './components/Landing';
 
-//import logo from './logo.svg';
-
 import './reset.css';
 import './App.css';
 
@@ -17,13 +15,13 @@ export default class App extends Component {
           <Switch>
             <Route
               exact
-              path="/unwitnessed/home"
+              path="/unwitnessed"
               component={Landing}
             />
-            <Redirect to="/unwitnessed/home" />
+            <Redirect to="/unwitnessed" />
           </Switch>
         </Router>
       </div>
     );
-  }
-}
+  };
+};

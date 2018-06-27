@@ -1,11 +1,10 @@
 #land {
   font-family: Verdana;
-  background-image: url("/images/landingpage.jpg");
+  background-image: url("/images/landing.jpg");
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center;
   background-size: cover;
   background-blend-mode: overlay;
-  background-color: black;
 }
 #lander {
   min-height: 100vh;
@@ -147,7 +146,7 @@ h1 {
   background-blend-mode: darken;
   animation: ;
 }
-.faceOff.p0 {
+.p0 {
   background-image: url('/images/rake.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -155,7 +154,7 @@ h1 {
   background-blend-mode: luminosity;
   background-color: white;
 }
-.faceOff.p1 {
+.p1 {
   background-image: url('/images/brood.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -163,7 +162,7 @@ h1 {
   background-blend-mode: luminosity;s
   background-color: white;
 }
-.faceOff.p2 {
+.p2 {
   background-image: url('/images/trull.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -184,7 +183,7 @@ h1 {
   background-blend-mode: darken;
   background-image: ;
 }
-.zero {
+.o0 {
   background-image: url('/images/rake.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -193,7 +192,7 @@ h1 {
   background-color: white;
   border-color: #1C1E57;
 }
-.one {
+.o1 {
   background-image: url('/images/brood.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -202,7 +201,7 @@ h1 {
   background-color: white;
   border-color: #57A515;
 }
-.two {
+.o2 {
   background-image: url('/images/trull.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -256,6 +255,49 @@ background-blend-mode: darken;
   color: #B00B00;
   font-weight: 400;
   font-size: 20px;
+}
+.fadeOutSingle{
+  animation: playerFadeOut 2.5s ease-out 1s 1;
+}
+.fadeOutBoth{
+  animation: twoFadeOut 2.5s ease-out 1s 1;
+}
+.p0BG{
+  background-image: url('/images/siegeOfPale.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: white;
+}
+.p1BG{
+  background-image: url('/images/broodWall.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: white;
+}
+.p2BG{
+  background-image: url('/images/trullWall.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: white;
+}
+#opInvis{
+  visibility: hidden;
+}
+#options{
+  width: 70%;
+  height: 80%;
+  border: black solid 15px;
+  border-radius: 8%;
+  display: flex;
+  position: absolute;
+  left: 10%;
+  top: 10%;
 }
 @keyframes playerFadeOut {
 
