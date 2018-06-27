@@ -20,6 +20,7 @@ export default class Landing extends Component {
         'handlePlayBttn',
         'prevReload',
         'startGame',
+        'new',
       ]
     );
   };
@@ -47,6 +48,7 @@ export default class Landing extends Component {
         this.setState({ emptyName: true, })
       }
     }
+    new() { this.setState({ name: false }) }
     playBtn(fn) {
       return (
         <div
@@ -77,9 +79,7 @@ export default class Landing extends Component {
                     value={this.state.player}
                     onChange={this.handleNameChange}
                   />
-                ) : (
-                  <div></div>
-                )}
+                ) : <div></div>}
               </form>
               {this.state.name ? this.playBtn(this.startGame) : this.playBtn(this.handlePlayBttn)}
             </div>
@@ -90,7 +90,7 @@ export default class Landing extends Component {
     else {
       return (
         <div>
-          <Game landingState={this.state} />
+          <Game landingState={this.state} new={this.new}/>
         </div>
       )
     }

@@ -12,6 +12,7 @@ export default class Game extends Component {
 
     this.state = {
       game: true,
+      new: false,
       playerRounds: 0,
       aiRounds: 0,
       playerDrop: String(),
@@ -43,11 +44,7 @@ export default class Game extends Component {
       ],
     }
     _.bindAll(
-      this, [
-        'playerDrop',
-        'aiPlays',
-        'newRound',
-      ]
+      this, ['playerDrop', 'aiPlays', 'newRound',]
     )
   }
   removeIndex(ray, ind, amt, thing) {
@@ -169,12 +166,14 @@ export default class Game extends Component {
     this.emptyInPlay(this.state.inPlay)
     this.gameCheck();
   }
+
   componentDidMount() {
     this.setState({
       playerOptions: this.state.options.map(ray => ray),
       aiOptions: this.state.options.map(ray => ray),
     })
   }
+
   render() {
     return (
       <div id="mainWrapper">
@@ -188,11 +187,14 @@ export default class Game extends Component {
         <PlayArea
           gameState={this.state}
           playerDrop={this.playerDrop}
+          switchNew={this.switchNew}
         />
         <Options
           game={this.state.game}
+          landingState={this.props.landingState}
           roundWinner={this.state.roundWinner}
           gameWinner={this.state.gameWinner}
+          new={this.props.new}
         />
       </div>
     )

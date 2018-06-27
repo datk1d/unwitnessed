@@ -290,15 +290,14 @@ background-blend-mode: darken;
   visibility: hidden;
 }
 #options{
-  visibility: visible;
-  width: 100%;
-  height: 100%;
-  border: black solid 2px;
-  border-radius: 5%;
+  width: 70%;
+  height: 80%;
+  border: black solid 15px;
+  border-radius: 8%;
   display: flex;
   position: absolute;
   left: 10%;
-  top: 34%;
+  top: 10%;
 }
 @keyframes playerFadeOut {
 

@@ -88,6 +88,16 @@ export default class PlayArea extends Component {
     })
     return this.state.play
   }
+  handleNewGame() {
+    this.setState({
+      p0: true,
+      p1: true,
+      p2: true,
+      play: false,
+      drawCheck: false,
+      dropped: String(),
+    })
+  }
   renderOptions(position) {
     return this.props.gameState.options.map((ele, i) => {
       return (<Option
@@ -103,7 +113,15 @@ export default class PlayArea extends Component {
   }
 
   shouldComponentUpdate() {
+    //first check if the game has bee started anew. If not, proceed on to the draw check
     //if inplay, check for draw. If draw, re-init the dropped option after the
+
+    if (this.props.gameState.new) {
+      this.handleNewGame()
+      this.props.switchNew()
+
+      return true
+    }
     if (this.props.gameState.roundWinner === 'Draw' && this.state.drawCheck) {
       this.reInitDrawOption(this.props.gameState.playerDrop)
     }
